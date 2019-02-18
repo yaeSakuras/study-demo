@@ -9,36 +9,38 @@
             text-decoration: none;
         }
         .icon-delete{
+            font-size: 14px;
             position: relative;
         }
-        .icon-delete::before{
+        .icon-delete::before,
+        .icon-delete::after{
             visibility: hidden;
-            content: attr(data-title);
+            font-size: 12px;
             position: absolute;
-            width: 2em;
-            top: -3em;
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 12px;
-            padding: .5em .8em;
+            pointer-events: none;
+        }
+        .icon-delete::before{
+            content: attr(data-title);
+            margin-bottom: .5em;
+            white-space: nowrap;
+            padding: 4px 6px;
             border-radius: 3px;
             color: #fff;
             background: #000;
         }
         .icon-delete::after{
-            visibility: hidden;
-            position: absolute;
-            top: -.45em;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
             content:'';
-            border-left: .3em solid transparent;
-            border-right: .3em solid transparent;
-            border-top: .3em solid #000;
+            margin-bottom: -.5em;
+            border: .5em solid;
+            border-color: #000 transparent transparent;
         }
         .icon-delete:hover::before,
-        .icon-delete:hover::after{
+        .icon-delete:hover::after,
+        .icon-delete:focus::before,
+        .icon-delete:focus::after{
             visibility:visible;
         }
     </style>
@@ -46,6 +48,16 @@
 <body>
 <div style="padding: 100px">
     <a href="javascript:" class="icon-delete css-tips" data-title="删除" role="button">删除</a>
+    <br>
+    <!--<a href="javascript:" class="icon-delete css-tips" data-title="删除" role="button">删除</a>-->
+</div>
+
+
+
+<div style="margin: 40px">
+    <div style="position: relative;width: 100px;height: 100px; border: 1px solid #000">
+        <div style="position: absolute;width: 10px;height: 10px; border: 1px solid #000;left:0;bottom:100%;"></div>
+    </div>
 </div>
 </body>
 </html>
