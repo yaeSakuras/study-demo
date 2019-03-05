@@ -5,9 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<input type="button" value="wosile" onclick="alert(value)">
+<div id="myDiv" style="background-color:blue; width:10px; height:25px"></div>
 <script>
-
+    var myDiv = document.querySelector('#myDiv');
+    myDiv.style.cssText = "width: 25px; height: 100px; background-color: green";
+    var prop, value, i, len;
+    for (i=0, len=myDiv.style.length; i < len; i++){
+      prop = myDiv.style[i]; //􏷱􏷲 myDiv.style.item(i)
+      value = myDiv.style.getPropertyValue(prop);
+      console.log(prop + " : " + value);
+      console.log(myDiv.style.getPropertyCSSValue(prop));
+    }
 </script>
 </body>
 </html>
