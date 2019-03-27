@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function throttle(method,context) {
+      clearTimeout(method.tId);
+      method.tId = setTimeout(function () {
+        method.call(context);
+      },1000);
+    }
+    var obj = {
+      x:'object'
+    }
+    function resize(){
+      console.log(this);
+      console.log('resize');
+    }
+    window.onresize = function () {
+      throttle(resize,obj);
+    }
+</script>
+</body>
+</html>
