@@ -132,6 +132,7 @@
     </style>
 </head>
 <body>
+<div id="result"></div>
 <div class="content">
     <div class="receive">
         <div class="avatar"><img src="https://tva4.sinaimg.cn/crop.0.0.750.750.180/75f2b996jw8f6zkdm7qp7j20ku0kudgr.jpg"  alt="pic"/></div>
@@ -163,7 +164,7 @@
     </div>
 </div>
 <script>
-    alert('1')
+    var result = document.querySelector('#result');
   document.documentElement.addEventListener('touchstart', function (event) {
     if (event.touches.length > 1) {
       event.preventDefault();
@@ -180,6 +181,12 @@
   }, false);
   document.addEventListener('gesturestart', function (event) {
     event.preventDefault();
+  });
+  window.addEventListener('scroll', function () {
+    result.innerHTML = 'result';
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    });
   });
 </script>
 </body>
