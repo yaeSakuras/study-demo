@@ -177,6 +177,9 @@
     }
     lastTouchEnd = now;
   }, false);
+  document.addEventListener('gesturestart', function (event) {
+    event.preventDefault();
+  });
 </script>
 </body>
 </html>
