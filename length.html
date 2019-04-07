@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function charJudge1(content) {
+    return content.length > 140;
+  }
+
+  function charJudge2(content) {
+    //方法1
+    //   var str = content.replace(/(^\s*)|(\s*$)/g,"").replace(/\s+/g, ' ').replace(/[\r\n]/g, ' ');
+    //方法2 IE9以上和其他浏览器支持trim
+    var str = content.trim().replace(/\s+/g, ' ')
+      .replace(/[\r\n]/g, ' ')
+      .replace(/[\x00-\xff]{2}/gi, ' ')
+      .replace(/(http|https|HTTP|HTTPS):\/\/([\w.]+\/?)\S*/, 'xxxxxxxxxx');
+    return str.length > 140;
+  }
+</script>
+</body>
+</html>
