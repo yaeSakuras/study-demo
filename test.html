@@ -2,22 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title></title>
     <style>
-        body{
-            font: menu;
-            font-size: 14px;
-            line-height: 1.42858;
+        body {
+            margin: 0
         }
-        .box::placeholder{
-            font-size: 14px;
+
+        html {
+            font-size: 16px;
         }
+
+        @media screen and (min-width: 375px) {
+            html {
+                /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
+                font-size: calc(100% + 2 * (100vw - 375px) / 39);
+                font-size: calc(16px + 2 * (100vw - 375px) / 39);
+            }
+        }
+
+        @media screen and (min-width: 414px) {
+            html {
+                /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
+                font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
+                font-size: calc(18px + 4 * (100vw - 414px) / 586);
+            }
+        }
+        .list-ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li{
+            display: block;
+        }
+        @media screen and (max-width: 414px) {
+            li {
+                width: calc(100vw / 7);
+            }
+        }
+        @media screen and (max-width: 395px) {
+            li {
+                width: calc(100vw / 6);
+            }
+        }
+        @media screen and (max-width: 385px) {
+            li {
+                width: calc(100vw / 5);
+            }
+        }
+        @media screen and (max-width: 375px) {
+            li {
+                width: calc(100vw / 4);
+            }
+        }
+
+        body {
+            font-family: sans-serif;
+            line-height: 1.5;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: none;
+            -webkit-touch-callout: none
+        }
+        /*#424242*/
+        /*#8c8c8c*/
+        /*#d48b69*/
+        /*#facb66*/
+        /*#c54941*/
+        /*#591b93*/
+        /*#e6e6e6*/
     </style>
 </head>
 <body>
-<div>qqqq</div>
-<div style="margin: 50px">
-    <input class="box" type="text" style="height: 30px; font-size: 20px;border: 1px solid" placeholder="我是红色的！" />
+<div class="list-component">
+    <ul class="list-ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
 </div>
 </body>
 </html>
