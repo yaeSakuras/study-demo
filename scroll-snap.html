@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 375px;
+            height: 667px;
+            margin: auto;
+            /*font-size: 0;*/
+            scroll-snap-type: x mandatory;
+            white-space: nowrap;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        .item{
+            display: inline-block;
+            width: 375px;
+            height: 100%;
+            scroll-snap-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item active">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+</div>
+<script>
+var  box = document.querySelector('.box');
+var timer = null;
+box.addEventListener('scroll',function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+        [].slice.call(box.children).forEach(function (list,index) {
+            if(Math.abs(list.getBoundingClientRect().left - box.getBoundingClientRect().left) < 10){
+                console.log(1);
+                list.classList.add('active');
+            }else{
+                console.log(2);
+                list.classList.remove('active');
+            }
+        })
+    },100);
+
+})
+</script>
+</body>
+</html>
