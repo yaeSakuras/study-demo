@@ -66,6 +66,7 @@ function move(e) {
     var left = slider.getBoundingClientRect().left;
     var percent = Math.round((e.pageX - left) / slider.clientWidth * 100);
     percent = Math.min( Math.max(0,percent),100);
+    console.log(percent);
     slider.style = '--percent: ' + percent;
 }
 </script>
