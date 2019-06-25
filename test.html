@@ -7,102 +7,73 @@
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
     <title></title>
     <style>
-body {
-    margin: 0
-}
-
-html {
-    font-size: 16px;
-}
-
-@media screen and (min-width: 375px) {
-    html {
-        /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
-        font-size: calc(100% + 2 * (100vw - 375px) / 39);
-        font-size: calc(16px + 2 * (100vw - 375px) / 39);
-    }
-}
-
-@media screen and (min-width: 414px) {
-    html {
-        /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
-        font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
-        font-size: calc(18px + 4 * (100vw - 414px) / 586);
-    }
-}
-
-body {
-    font-family: sans-serif;
-    line-height: 1.5;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-text-size-adjust: none;
-    -webkit-touch-callout: none
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.list-content {
-    display: flex;
-    flex-wrap: wrap;
-    padding: .5rem;
-}
-
-.list-item {
-    display: block;
-    margin: .25rem;
-    width: calc((100vw - 3.5rem) / 5);
-    height: calc((100vw - 3.5rem) / 5);
-}
-
-.list-item:nth-child(7n+1) {
-    background: #424242;
-}
-
-.list-item:nth-child(7n+2) {
-    background: #8c8c8c;
-}
-
-.list-item:nth-child(7n+3) {
-    background: #d48b69;
-}
-
-.list-item:nth-child(7n+4) {
-    background: #facb66;
-}
-
-.list-item:nth-child(7n+5) {
-    background: #c54941;
-}
-
-.list-item:nth-child(7n+6) {
-    background: #591b93;
-}
-
-.list-item:nth-child(7n+7) {
-    background: #e6e6e6;
-}
-
-.list-item.active {
-    outline: 2px solid #000;
-}
+        .color{
+            color: red;
+            background-color: blue;
+            animation: color 1s linear;/**控制动画时长和类型**/
+        }
+        @keyframes color {
+            to{
+                color: blue;
+                background-color: red;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="list-wrapper">
-    <ul class="list-content">
-        <li class="list-item"></li>
-        <li class="list-item"></li>
-        <li class="list-item active"></li>
-        <li class="list-item"></li>
-        <li class="list-item"></li>
-        <li class="list-item"></li>
-        <li class="list-item"></li>
-    </ul>
-</div>
+<div id="color" class="color"></div>
+<script>
+    var div = document.createElement('div');
+    var color = document.getElementById('color');
+    div.style.width = '300px';
+    div.style.height = '150px';
+    document.body.appendChild(div);
+    div.style.background = 'linear-gradient(to right bottom, red, blue)';
+    var animationState = true;
+    color.addEventListener("animationstart",function(){
+        animationState = true;
+    });
+    color.addEventListener("animationend",function(){
+        animationState = false;
+    });
+    var draw = function () {
+        if(animationState){
+            var style = window.getComputedStyle(color);
+            div.style.background = 'linear-gradient(to right bottom, '+style.color+', '+style.backgroundColor+')';
+        }
+        requestAnimationFrame(draw);
+    };
+    draw();
+
+    // //第一题，第二题
+    // var box = document.createElement('div');
+    // box.style.width = '300px';
+    // box.style.height = '150px';
+    // box.style.background = 'linear-gradient(to bottom right, red , blue)';
+    // document.body.append(box);
+    //
+    // //第三题
+    // //[requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
+    // //根据官方文档requestAnimationFrame回调函数执行次数通常是每秒60次，通过内置函数时间戳设置1s
+    // //红蓝对应RGB红色(255,0,0)蓝色(0,0,255)
+    // var start = null;
+    //
+    // function ani(timestamp) {
+    //     if (!start) start = timestamp;
+    //     var progress = timestamp - start;
+    //     var color = parseInt(Math.min(progress / 1000 * 255, 255));
+    //     var red = "rgb("+(255-color)+",0,"+color+")";
+    //     console.log(red);
+    //     var blue = "rgb("+color+",0,"+(255-color)+")";
+    //     box.style.background = "linear-gradient(to bottom right, "+red+", "+blue+")";
+    //     if (progress <= 1000) {
+    //         window.requestAnimationFrame(ani);
+    //     }
+    // }
+    //
+    // window.requestAnimationFrame(ani);
+
+    // https://output.jsbin.com/hojesabawe
+</script>
 </body>
 </html>
