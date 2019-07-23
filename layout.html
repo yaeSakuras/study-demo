@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font:menu;
+            font-size:14px;
+            line-height:1.42858;
+            margin:0
+        }
+        .app{
+            display: flex;
+            flex-direction: column;
+            max-height: 100vh;
+        }
+        .top{
+            min-height: 50px;
+            background: #508fee;
+        }
+        .cotnent{
+            display: flex;
+            background: #50c1f5;
+        }
+        .left{
+            width: 50px;
+            background: greenyellow;
+        }
+        .right{
+            flex: 1;
+            border:none;
+            height: calc(100vh - 50px);
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="top">
+        <div>asdad</div>
+    </div>
+    <div class="cotnent">
+        <div class="left"></div>
+        <iframe class="right" src="test.html"></iframe>
+    </div>
+</div>
+</body>
+</html>
