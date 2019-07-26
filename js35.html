@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+const object1 = {
+    userid: 123,
+    username: '王二',
+    tel: '13208033621'
+};
+
+Object.keys(object1).map(item => `${item}=${encodeURIComponent(object1[item])}`).join('&');
+
+location.search;//难道这个有陷阱？
+
+function urlToObj(url) {
+    let obj = {};
+    decodeURIComponent(url).replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => {
+        if(obj[k]){
+            obj[k] = Array.prototype.concat(obj[k],v);
+        }else{
+            obj[k] = v;
+        }
+    });
+    return obj;
+}
+
+
+
+var a = urlToObj('userid=123&username=%E7%8E%8B%E4%BA%8C&tel=13208033621&userid=122223&userid=44444');
+console.log(a);
+</script>
+</body>
+</html>
