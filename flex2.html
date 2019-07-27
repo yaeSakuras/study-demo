@@ -6,56 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Title</title>
     <style>
-ul {
+ul{
     padding: 0;
     list-style: none;
 }
-
-.article-content {
+.article-content{
     font-size: 16px;
 }
-
-.article-item {
-    overflow: hidden;
+.article-item{
     height: 2.5em;
     line-height: 2.5em;
+    display: flex;
 }
-
-.article-title {
+.article-title{
+    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 1em;
     color: #989da4;
 }
-
-.article-label {
-    float: right;
-}
-
-.article-label > span {
+.article-label>span{
     font-size: .875em;
     border: 1px solid;
     padding: .1em .2em;
     border-radius: .15em;
 }
-
-.article-label > span[data-type="type"] {
+.article-label>span[data-type="type"]{
     color: #abaeb4;
     border-color: #e6e7e8;
 }
-
-.article-label > span[data-type="status"] {
+.article-label>span[data-type="status"]{
     color: #f06266;
     border-color: #fce4e4;
 }
-
-.article-label > span[data-type="words"] {
+.article-label>span[data-type="words"]{
     color: #508fee;
     border-color: #d0e0fa;
 }
-
-.article-list[data-type="reverse"] .article-title {
+.article-list[data-type="reverse"] .article-title{
     direction: rtl;
 }
     </style>
@@ -64,54 +53,28 @@ ul {
 <div class="article-content">
     <ul class="article-list">
         <li class="article-item">
+            <div class="article-title">这次是一个新的故事这次是一个新的故事这次是一个新的故事</div>
             <div class="article-label">
                 <span data-type="type">都市</span>
                 <span data-type="status">连载中</span>
                 <span data-type="words">54.28万字</span>
             </div>
-            <div class="article-title">这次是一个新的故事这次是一个新的故事这次是一个新的故事</div>
         </li>
         <li class="article-item">
+            <div class="article-title">修真四万年</div>
             <div class="article-label">
                 <span data-type="type">都市</span>
                 <span data-type="status">完本</span>
                 <span data-type="words">1万字</span>
             </div>
-            <div class="article-title">修真四万年</div>
         </li>
         <li class="article-item">
+            <div class="article-title">三体</div>
             <div class="article-label">
                 <span data-type="type">科幻</span>
                 <span data-type="status">完本</span>
                 <span data-type="words">1059.98万字</span>
             </div>
-            <div class="article-title">三体</div>
-        </li>
-    </ul>
-    <ul class="article-list" data-type="reverse">
-        <li class="article-item">
-            <div class="article-label">
-                <span data-type="type">都市</span>
-                <span data-type="status">连载中</span>
-                <span data-type="words">54.28万字</span>
-            </div>
-            <div class="article-title">这次是一个新的故事这次是一个新的故事这次是一个新的故事</div>
-        </li>
-        <li class="article-item">
-            <div class="article-label">
-                <span data-type="type">都市</span>
-                <span data-type="status">完本</span>
-                <span data-type="words">1万字</span>
-            </div>
-            <div class="article-title">修真四万年</div>
-        </li>
-        <li class="article-item">
-            <div class="article-label">
-                <span data-type="type">科幻</span>
-                <span data-type="status">完本</span>
-                <span data-type="words">1059.98万字</span>
-            </div>
-            <div class="article-title">三体</div>
         </li>
     </ul>
 </div>

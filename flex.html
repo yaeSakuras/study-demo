@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            border: 0;
+            position: relative;
+            display: inline-block;
+            color: transparent;
+            overflow: hidden;
+            object-fit: contain;
+        }
+        .box{
+            width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 20px 20px;
+            color: #3D4966;
+            background-color: #f7f9fd;
+            border: 1px solid #e1e6f5;
+        }
+        .box span{
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .flex{
+            display: flex;
+            background: #fff;
+            outline: 1px dashed;
+        }
+        .flex>div{
+            background: #50c1f5;
+        }
+        [data-index]::before{
+            content: attr(data-index);
+            background-color: #f00;
+            color: #fff;
+            position: absolute;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 30px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <p>
+        <span><input type="radio" value="row" id="row" name="dir"><label for="row">row</label></span>
+        <span><input type="radio" value="row-reverse" id="row-reverse" name="dir"><label for="row-reverse">row-reverse</label></span>
+        <span><input type="radio" value="column" id="column" name="dir"><label for="column">column</label></span>
+        <span><input type="radio" value="column-reverse" id="column-reverse" name="dir"><label for="column-reverse">row-reverse</label></span>
+    </p>
+    <div class="flex" id="flexDir">
+        <div data-index="1"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2333090299,850498900&fm=5" /></div>
+        <div data-index="2"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1667994205,255365672&fm=5" /></div>
+        <div data-index="3"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5" style="height: 161px"/></div>
+        <div data-index="4"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1917461690,696184102&fm=5" /></div>
+        <div data-index="5"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2191049473,237480689&fm=5" /></div>
+    </div>
+</div>
+<script>
+    const eleRadio = document.querySelectorAll('input[type="radio"]');
+    const eleDir = document.querySelector('#flexDir');
+    eleRadio.forEach(ele => {
+        ele.addEventListener('click',function () {
+            eleDir.style['flex-direction'] = this.value;
+        });
+    });
+</script>
+</body>
+</html>

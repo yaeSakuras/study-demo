@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+.container {
+    background: #f6f7f9;
+}
+
+.btn-group {
+    display: flex;
+    padding: 1rem;
+}
+
+[class|='ui-btn'] {
+    flex: 1;
+    margin-right: 1rem;
+    background: transparent;
+    border: 1px solid;
+    padding: 1em;
+    border-radius: 10em;
+}
+
+.btn-group > [class|='ui-btn']:last-child {
+    margin-right: 0;
+}
+
+[class*='-red'] {
+    color: #ef7077;
+}
+
+[class*='-blue'] {
+    color: skyblue;
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="btn-group">
+        <button class="ui-btn-red">按钮</button>
+        <button class="ui-btn-red">按钮</button>
+        <button class="ui-btn-blue">按钮</button>
+        <button class="ui-btn-blue">按钮</button>
+    </div>
+</div>
+</body>
+</html>

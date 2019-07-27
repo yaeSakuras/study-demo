@@ -5,16 +5,43 @@
     <title>Title</title>
 </head>
 <body>
-<div id="myDiv" style="background-color:blue; width:10px; height:25px"></div>
 <script>
-    var myDiv = document.querySelector('#myDiv');
-    myDiv.style.cssText = "width: 25px; height: 100px; background-color: green";
-    var prop, value, i, len;
-    for (i=0, len=myDiv.style.length; i < len; i++){
-      prop = myDiv.style[i]; //􏷱􏷲 myDiv.style.item(i)
-      value = myDiv.style.getPropertyValue(prop);
-      console.log(prop + " : " + value);
-      console.log(myDiv.style.getPropertyCSSValue(prop));
+    var arr = ['cat', 'monkey', 'fish', 'bird'],
+        maxSize = 10,
+        curLen = arr.length;
+
+    function insertItem(p, value) {
+        if (curLen >= maxSize) {
+            console.log('上溢出');
+            return false;
+        }
+        if (p < 0 || p > curLen) {
+            console.log('非法');
+            return false;
+        }
+        for (var i = curLen; i > p; i--) {
+            arr[i] = arr[i - 1];
+        }
+        arr[p] = value;
+        curLen++;
+        return true;
+    }
+
+    function deleteItem(p) {
+        if (curLen <= 0) {
+            console.log('下溢出');
+            return false;
+        }
+        if (p < 0 || p > curLen - 1) {
+            console.log('非法');
+            return false;
+        }
+        for (var i = p; i < curLen - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        curLen--;
+        arr.length = curLen;
+        return true;
     }
 </script>
 </body>
