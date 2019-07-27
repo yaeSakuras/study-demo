@@ -74,12 +74,12 @@ function moveActive(e) {
     }
 }
 //绑定函数
-document.body.addEventListener('mousedown',addActive);
-document.body.addEventListener('touchstart',addActive);
-document.body.addEventListener('mouseup', removeActive);
-document.body.addEventListener('touchsend', removeActive);
-document.body.addEventListener('mousemove', moveActive);
-document.body.addEventListener('touchmove', moveActive);
+document.addEventListener('mousedown',addActive);
+document.addEventListener('touchstart',addActive);
+document.addEventListener('mouseup', removeActive);
+document.addEventListener('touchend', removeActive);
+document.addEventListener('mousemove', moveActive);
+document.addEventListener('touchmove', moveActive);
 </script>
 </body>
 </html>
