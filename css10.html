@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+summary{
+    user-select: none;
+    outline: 0;
+}
+summary a {
+    text-decoration: none;
+    color: inherit;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::-moz-list-bullet {
+    font-size: 0;
+}
+
+.side-wrap {
+    width: 180px;
+    height: 500px;
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+}
+
+.side-menu summary {
+    position: relative;
+    padding: 10px;
+    color: #474a54;
+}
+
+.side-menu .side-submenu li {
+    padding: 10px 30px;
+    color: #87898f;
+}
+
+.side-menu .side-submenu li:hover {
+    cursor: pointer;
+    color: #3cb5ee;
+    background: #edf9ff;
+}
+
+.side-menu summary::after {
+    content: '';
+    position: absolute;
+    margin-top: 5px;
+    right: 10px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid;
+    border-width: 2px 2px 0 0;
+    transform: rotate(135deg);
+}
+
+.side-menu[open] summary::after {
+    margin-top: 8px;
+    transform: rotate(-45deg);
+}
+    </style>
+</head>
+<body>
+<div class="side-wrap">
+    <details class="side-menu" open>
+        <summary tabindex="-1"><a href="javascript:">布局</a></summary>
+        <ul class="side-submenu">
+            <li>Flex布局</li>
+            <li>Grid布局</li>
+            <li>Shapes布局</li>
+            <li>Columns布局</li>
+        </ul>
+    </details>
+    <details class="side-menu">
+        <summary><a href="javascript:">组件</a></summary>
+        <ul class="side-submenu">
+            <li>按钮</li>
+            <li>输入框</li>
+            <li>下拉列表</li>
+            <li>单复选框</li>
+        </ul>
+    </details>
+</div>
+</body>
+</html>
