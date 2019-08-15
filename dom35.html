@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="loginForm" method="post">
+    <input type="text" name="username" />
+    <input type="text" name="password" />
+    <input type="submit" value="login">
+</form>
+GET /wp-content/plugins/Pure-Highlightjs_1.0/assets/pure-highlight.css?ver=0.1.0 HTTP/1.1
+Host: www.taohui.pub
+<script>
+//第一题
+var formEle = document.querySelector('#loginForm');
+
+//第二题
+//onsubmit="return false"
+
+//第三题。第四题
+formEle.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = document.querySelector('input[type="submit"]');
+    btn.disabled = true;
+    var item = e.target.elements;
+    var obj = {};
+    for (var i = 0; i < item.length; i++) {
+        var key = item[i].name;
+        if (key) {
+            obj[key] = item[i].value;
+        }
+    }
+    setTimeout(function () {
+        btn.disabled = false;
+        console.log('请求成功');
+    }, 2000);
+    console.log(obj);
+}, false);
+
+//第五题
+//<input form="loginForm" type="hidden" name="form">
+
+</script>
+</body>
+</html>
