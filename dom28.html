@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea></textarea>
+<script>
+//第一题
+var dom = document.querySelector('textarea');
+//第二题
+dom.setAttribute('rows',5);
+//第三题
+var computedStyle = window.getComputedStyle(dom,null);
+var height = computedStyle.height;
+//第四题
+dom.style.lineHeight = 1;
+dom.style.height = parseFloat(computedStyle.lineHeight) * dom.getAttribute('rows') + 'px';
+//第五题不会
+</script>
+</body>
+</html>

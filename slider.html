@@ -41,15 +41,22 @@
             top: 0;
             margin: auto -8px;
         }
+        .slider-line{
+            position: absolute;
+            width: 2px;
+            height: 16px;
+            background: #3D4966;
+        }
     </style>
 </head>
 <body>
 <script>
 var body = document.querySelector('body');
-body.innerHTML = '<div class="slider"><button class="slider-track"></button><button class="slider-thumb"></button></div>';
+body.innerHTML = '<div class="slider"><button class="slider-track"></button><button class="slider-thumb"></button><div class="slider-line"></div></div>';
 var slider = document.querySelector('.slider'),
     track = document.querySelector('.slider-track'),
-    thumb = document.querySelector('.slider-thumb');
+    thumb = document.querySelector('.slider-thumb'),
+    line = document.querySelector('.slider-line');
 slider.style = '--percent: 50';
 track.addEventListener('click', function (e) {
     var percent = Math.round(e.offsetX / slider.clientWidth * 100);
@@ -61,6 +68,11 @@ thumb.addEventListener('mousedown', function () {
         document.removeEventListener('mousemove', move);
     });
 }, false);
+
+slider.addEventListener('mousemove', function(e){
+    console.log(e);
+    line.style.left = e.offsetX + 'px';
+});
 
 function move(e) {
     var left = slider.getBoundingClientRect().left;
