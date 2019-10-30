@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var box = document.createElement('div');
+    box.style.width = '300px';
+    box.style.height = '150px';
+    // box.style.background = 'linear-gradient(to bottom right, red , blue)';
+    document.body.append(box);
+//[requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
+//根据官方文档requestAnimationFrame回调函数执行次数通常是每秒60次，通过内置函数时间戳设置1s
+//红蓝对应RGB红色(255,0,0)蓝色(0,0,255)
+var start = null;
+
+function ani(timestamp) {
+    if (!start) start = timestamp;
+    var progress = timestamp - start;
+    var color = parseInt(Math.min(progress / 1000 * 255, 255));
+    var red = "rgb("+(255-color)+",0,"+color+")";
+    console.log(red);
+    var blue = "rgb("+color+",0,"+(255-color)+")";
+    box.style.background = "linear-gradient(to bottom right, "+red+", "+blue+")";
+    if (progress <= 1000) {
+        window.requestAnimationFrame(ani);
+    }
+}
+
+window.requestAnimationFrame(ani);
+</script>
+</body>
+</html>

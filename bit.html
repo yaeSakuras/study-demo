@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function converter(number, base) {
+    var arr = [],
+      temp,
+      str = '',
+      digits = '0123456789ABCDEF';
+    while (number > 0) {
+      temp = Math.floor(number % base);
+      arr.push(temp);
+      number = Math.floor(number / base);
+    }
+    while (arr.length > 0) {
+      str += digits[arr.pop()];
+    }
+    return str;
+  }
+
+  console.log(converter(10, 2));
+  console.log(converter(1232, 16));
+</script>
+</body>
+</html>

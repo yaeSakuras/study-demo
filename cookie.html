@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    1. document.cookie
+    2. document.cookie="userId=1";
+    3. document.cookie = "userId=1;expires=" + new Date(time + 24*60*60*1000).toUTCString()
+    4.
+    5. document.cookie = "ywkey=;expires=" + new Date(0).toUTCString()
+    6.localStorage.setItem('userId',1);
+    7
+</div>
+<script>
+    function getCookie(key)
+    {
+        var name = key + "=";
+        var str = document.cookie.split(';');
+        for(var i=0; i<str.length; i++) {
+            var item = str[i].trim();
+            if (item.indexOf(name) === 0) return item.substring(name.length,item.length);
+        }
+        return "";
+    }
+    getCookie('_csrfToken');
+
+    function setKey(key,value){
+        var obj = {
+            data:value.data,
+            time:new Date().getTime(),
+            expire:value.expire
+        };
+        localStorage.setItem(key,JSON.stringify(obj));
+    }
+
+    function getKey(key){
+        if(!localStorage.getItem(key)) return;
+        var data = JSON.parse(localStorage.getItem(key));
+        if(new Date().getTime() - data.time > data.expire){
+            localStorage.removeItem(key);
+            console.log('信息已过期');
+        }else{
+            return data;
+        }
+    }
+    //data数据，expire过期时间毫秒值
+    setKey('name',{ data:'tom',expire: 1000*60*60*24}); //过期时间24小时
+    console.log(getKey('name'));
+</script>
+</body>
+</html>

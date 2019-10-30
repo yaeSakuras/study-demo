@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container" class="container">
+    <section>
+        <img src="https://image.zhangxinxu.com/image/study/s/s256/mm.jpg" alt="外层图片">
+        <p>
+            <img src="https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" alt="示意图1">
+            <img src="https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg" alt="示意图2">
+            <img id="compareImg" src="https://image.zhangxinxu.com/image/study/s/s256/mm3.jpg" alt="示意图3">
+            <img src="https://image.zhangxinxu.com/image/study/s/s256/mm4.jpg" alt="示意图4">
+            <img src="https://image.zhangxinxu.com/image/study/s/s256/mm5.jpg" alt="示意图5">
+        </p>
+    </section>
+</div>
+<script>
+    let container = document.querySelector('#container');
+    let compareImg = document.querySelector('#compareImg');
+    document.body.addEventListener('click',function (e) {
+      if(e.target instanceof Image && container.contains(e.target)){
+        var res = compareImg.compareDocumentPosition(e.target);
+        if(res === Node.DOCUMENT_POSITION_PRECEDING){
+          console.log('red');
+        }else if(res === Node.DOCUMENT_POSITION_FOLLOWING){
+          console.log('green');
+        }
+      }
+    })
+</script>
+</body>
+</html>

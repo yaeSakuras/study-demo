@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function foo(index){
+        console.log(index, this.name);
+    }
+    var obj = {
+        name:'cat'
+    }
+    var array1 = [1, 2, 3];
+    array1.forEach(foo, obj);
+</script>
+</body>
+</html>

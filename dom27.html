@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background: gray;
+        }
+        .box.active{
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+<script>
+var timer = null,
+    x = 0,
+    y = 0,
+    isMove = false;
+
+for (var i = 0; i < 20; i++) {
+    var box = document.createElement('div');
+    box.className = 'box';
+    document.body.append(box);
+}
+//添加方法
+function addActive(e){
+    if(e.target.className.indexOf('box') >= 0){
+        timer = setTimeout(function () {
+            e.target.classList.add('active');
+            clearTimeout(timer);
+            isMove = true;
+            x = e.touches && e.touches[0].clientX || e.clientX;
+            y = e.touches && e.touches[0].clientY || e.clientY;
+        },350);
+    }else{
+        document.querySelectorAll('.box').forEach(function (item) {
+            item.classList.remove('active');
+        })
+    }
+}
+//删除方法
+function removeActive() {
+    isMove = false;
+    x = y = 0;
+    clearTimeout(timer);
+}
+//移动方法
+function moveActive(e) {
+    var ev = e.touches && e.touches[0] || e;
+    if (isMove) {
+        var left = Math.min(x, ev.clientX);
+        var top = Math.min(y, ev.clientY);
+        var right = Math.max(x, ev.clientX);
+        var bottom = Math.max(y, ev.clientY);
+        document.querySelectorAll('.box').forEach((item) => {
+            var ow = item.offsetWidth,
+                oh = item.offsetHeight,
+                ox = item.offsetLeft,
+                oy = item.offsetTop;
+            var xw = ox + ow;
+            var yh = oy + oh;
+            if ( right > ox && bottom >= oy  && xw > left && yh > top ) {
+                item.classList.add('active')
+            } else {
+                item.classList.remove('active')
+            }
+        })
+    }
+}
+//绑定函数
+document.addEventListener('mousedown',addActive);
+document.addEventListener('touchstart',addActive);
+document.addEventListener('mouseup', removeActive);
+document.addEventListener('touchend', removeActive);
+document.addEventListener('mousemove', moveActive);
+document.addEventListener('touchmove', moveActive);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var NativetoFixed = Number.prototype.toFixed;//备份
+    var MytoFixed = function(digits){
+        var reg = new RegExp('(\\d*.\\d{' + digits + '})5(\\d*)', 'g');
+        var number = Number(this.toString().replace(reg, '$1' + 6 + '$2'));
+        return NativetoFixed.call(number,digits);
+    };
+    var MytoFixed2 = function(digits){
+        var length = (parseFloat(this) + '').replace(/^\d+\.?/, '').length;
+        var len = length > digits ? length : digits;
+        var number = Number(this) + Math.pow(10, -len-1);
+        return NativetoFixed.call(number, digits);
+    };
+    Number.prototype.toFixed = MytoFixed;
+
+</script>
+</body>
+</html>

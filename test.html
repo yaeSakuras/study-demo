@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title></title>
+    <style>
+        .color{
+            color: red;
+            background-color: blue;
+            animation: color 1s linear;/**控制动画时长和类型**/
+        }
+        @keyframes color {
+            to{
+                color: blue;
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+<div id="color" class="color"></div>
+<script>
+    var div = document.createElement('div');
+    var color = document.getElementById('color');
+    div.style.width = '300px';
+    div.style.height = '150px';
+    document.body.appendChild(div);
+    div.style.background = 'linear-gradient(to right bottom, red, blue)';
+    var animationState = true;
+    color.addEventListener("animationstart",function(){
+        animationState = true;
+    });
+    color.addEventListener("animationend",function(){
+        animationState = false;
+    });
+    var draw = function () {
+        if(animationState){
+            var style = window.getComputedStyle(color);
+            div.style.background = 'linear-gradient(to right bottom, '+style.color+', '+style.backgroundColor+')';
+        }
+        requestAnimationFrame(draw);
+    };
+    draw();
+
+    // //第一题，第二题
+    // var box = document.createElement('div');
+    // box.style.width = '300px';
+    // box.style.height = '150px';
+    // box.style.background = 'linear-gradient(to bottom right, red , blue)';
+    // document.body.append(box);
+    //
+    // //第三题
+    // //[requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
+    // //根据官方文档requestAnimationFrame回调函数执行次数通常是每秒60次，通过内置函数时间戳设置1s
+    // //红蓝对应RGB红色(255,0,0)蓝色(0,0,255)
+    // var start = null;
+    //
+    // function ani(timestamp) {
+    //     if (!start) start = timestamp;
+    //     var progress = timestamp - start;
+    //     var color = parseInt(Math.min(progress / 1000 * 255, 255));
+    //     var red = "rgb("+(255-color)+",0,"+color+")";
+    //     console.log(red);
+    //     var blue = "rgb("+color+",0,"+(255-color)+")";
+    //     box.style.background = "linear-gradient(to bottom right, "+red+", "+blue+")";
+    //     if (progress <= 1000) {
+    //         window.requestAnimationFrame(ani);
+    //     }
+    // }
+    //
+    // window.requestAnimationFrame(ani);
+
+    // https://output.jsbin.com/hojesabawe
+</script>
+</body>
+</html>

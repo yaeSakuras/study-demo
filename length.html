@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //https://github.com/zhangxinxu/quiz/issues/18
+  String.prototype.isGreater = function(len){
+    return this.length > len;
+  };
+
+  String.prototype.filterSPACE = function(){
+    return this.trim().replace(/\s+/g, ' ');
+  };
+
+  String.prototype.filterASCII = function(len){
+    var strASCII =  this.match(/[\x00-\xff]/g).length / 2;
+    return Math.ceil(this.length - strASCII) > 140;
+  };
+
+  String.prototype.filterURI = function(){
+    var str = Array(20).join();//'中'.repeat(10)
+    return this.replace(/(http|https|HTTP|HTTPS):\/\/([\w.]+\/?)\S*/, str);
+  };
+
+  var content = `气温asdas`;
+  //第一题
+  content.isGreater(140);
+
+  //第二题
+  content.filterSPACE().isGreater(140);
+
+  //第三题
+  content.filterSPACE().filterASCII(140);
+
+  //第四题
+  content.filterURI().filterSPACE().isGreater(140);//有顺序，判断网址最前
+</script>
+</body>
+</html>

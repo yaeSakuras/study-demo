@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function runStack(n) {
+    if (n === 0)
+        return 100;
+}
+
+function run(n) {
+    while (n > 0) {
+        runStack(n);
+        n = n - 2;
+    }
+
+    return runStack(n)
+}
+
+run(50000)
+</script>
+</body>
+</html>

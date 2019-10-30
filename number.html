@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Number.prototype.toFixed = function (num) {
+    //         if (this > 0) {
+    //             return parseInt(this * Math.pow(10, num) + 0.5) / Math.pow(10, num);
+    //         } else {
+    //             return parseInt(this * Math.pow(10, num) - 0.5) / Math.pow(10, num);
+    //         }
+    // };
+Number.prototype.toFixed = String.prototype.toFixed = function (number) {
+    if(isNaN(number)) return;
+    return parseInt(this * Math.pow(10, number) + 0.5) / Math.pow(10, number);
+}
+console.log(-0.05.toFixed(2));
+console.log('-0.050'.toFixed(2));
+</script>
+</body>
+</html>

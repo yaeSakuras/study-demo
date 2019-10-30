@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="javascript:" id="btn" onclick="handle(this)">download</a>
+<script>
+    const arrayToCSV = (arr, delimiter = ',') => arr.map(v => v.map(x => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x)).join(delimiter)).join('\n');
+    function handle(link) {
+        var str = arrayToCSV([['a', '"b" great'], ['c', 3.1415]]);
+        link.href = "data:attachment/csv;charset=utf-8,"+str;
+        link.download = 'info.csv';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<dialog id="d3">
+    <button id="btn3">close3</button>
+</dialog>
+<dialog id="d1">
+    <button id="btn1">close1</button>
+</dialog>
+<dialog id="d2">
+    <button id="btn2">close2</button>
+</dialog>
+<script>
+//第一题
+var dialog = document.createElement('dialog');
+document.body.appendChild(dialog);
+//第二题
+dialog.setAttribute('open','dialog');
+//第三题
+var btn = document.createElement('button');
+btn.textContent = "btn";
+dialog.appendChild(btn);
+btn.addEventListener('click',function () {
+    dialog.close();
+},false);
+//第四题 如果使用了showModal就不能有open属性
+dialog.showModal();
+//第五题，通过测试发现，不需要设置默认就是最后一个打的dialog一定在其他之上
+// dialog1.showModal();
+var d1 = document.querySelector('#d1');
+var d2 = document.querySelector('#d2');
+var d3 = document.querySelector('#d3');
+d2.showModal();
+d3.showModal();
+d1.showModal();
+
+btn1.addEventListener('click',function () {
+    d1.close();
+},false);
+btn2.addEventListener('click',function () {
+    d2.close();
+},false);
+btn3.addEventListener('click',function () {
+    d3.close();
+},false);
+</script>
+</body>
+</html>

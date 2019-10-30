@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [0,1,2,3,4,5];
+    let fn = {
+        forwardToOne(arr,index){
+            arr[index] = arr.splice(index-1,1,arr[index])[0];
+            return arr;
+        },
+        moveToFirst(arr,index){
+            arr.unshift(arr.splice(index, 1)[0]);
+            return arr;
+        },
+        moveToLast(arr,index){
+            arr.push(arr.splice(index, 1)[0]);
+            return arr;
+        },
+    };
+    function ArraySort(type,arr,index){
+        if(!Array.isArray(arr)) return;
+        if(index === 0) return arr;
+        let newArray = JSON.parse(JSON.stringify(arr));
+        if(index > 0 || index < newArray.length){
+            return fn[type](newArray,index);
+        }else{
+            console.log('越界');
+        }
+    }
+    function swapArray(arr,index1,index2){
+        if(!Array.isArray(arr)) return;
+        if(index1 === 0 && index2 === 0) return arr;
+        let newArray = JSON.parse(JSON.stringify(arr));
+        if((index1 < newArray.length && index2 < newArray.length) && (index1 > -1 && index2 > -1)){
+            let temp;
+            temp = newArray[index1];
+            newArray[index1] = newArray[index2];
+            newArray[index2] = temp;
+            return newArray;
+        }else{
+            console.log('越界');
+        }
+    }
+    console.log(ArraySort('forwardToOne', arr, 3));
+    console.log(ArraySort('moveToFirst', arr, 5));
+    console.log(ArraySort('moveToLast', arr, 2));
+    console.log(swapArray(arr, 4, 5));
+</script>
+</body>
+</html>

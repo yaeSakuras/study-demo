@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            color: #000;
+            text-decoration: none;
+        }
+        .icon-delete{
+            font-size: 14px;
+            position: relative;
+        }
+        .icon-delete::before,
+        .icon-delete::after{
+            visibility: hidden;
+            font-size: 12px;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .icon-delete::before{
+            content: attr(data-title);
+            margin-bottom: .5em;
+            white-space: nowrap;
+            padding: 4px 6px;
+            border-radius: 3px;
+            color: #fff;
+            background: #000;
+        }
+        .icon-delete::after{
+            content:'';
+            margin-bottom: -.5em;
+            border: .5em solid;
+            border-color: #000 transparent transparent;
+        }
+        .icon-delete:hover::before,
+        .icon-delete:hover::after,
+        .icon-delete:focus::before,
+        .icon-delete:focus::after{
+            visibility:visible;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 100px">
+    <a href="javascript:" class="icon-delete css-tips" data-title="删除删除" role="button">删除</a>
+</div>
+</body>
+</html>

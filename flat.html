@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+var entry = {
+    a: {
+        b: {
+            c: {
+                dd: 'abcdd'
+            }
+        },
+        d: {
+            xx: 'adxx'
+        },
+        e: 'ae'
+    }
+};
+
+function isObject (obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+function flatObject(obj,k,result){
+    var key = k || '';
+    var res = result || {};
+    for (var i in obj){
+       if(obj.hasOwnProperty(i)){
+            var keyName = key + i;
+            if(isObject(obj[i])){
+                flatObject(obj[i],keyName + '.',res);
+            }else{
+                res[keyName] = obj[i];
+            }
+       }
+    }
+    return res;
+}
+
+console.log(flatObject(entry));
+</script>
+</body>
+</html>
