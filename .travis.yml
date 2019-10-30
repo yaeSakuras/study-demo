@@ -1,7 +1,7 @@
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: 82572830d5ee2b13aa0195a8d60ac6b8763098b5  # Set in the settings page of your repository, as a secure variable
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   target_branch: gh_pages # default target branch gh_pages
   on:
