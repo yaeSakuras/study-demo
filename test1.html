@@ -3,31 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-html,body{
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-.content{
-    height:1000px;
-    flex: 1 0 auto;
-}
-.footer{
-    flex: 0 0 auto;
-}
-    </style>
 </head>
 <body>
-<div class="container">
-    <div class="content">内容</div>
-    <footer class="footer">底部</footer>
-</div>
+<script>
+function runStack(n) {
+    if (n === 0)
+        return 100;
+}
+
+function run(n) {
+    while (n > 0) {
+        runStack(n);
+        n = n - 2;
+    }
+
+    return runStack(n)
+}
+
+run(50000)
+</script>
 </body>
 </html>

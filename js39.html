@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//第一题
+function colorPad(color) {
+    var regColor = /^#?([0-9a-fA-f]{1,3}|[0-9a-fA-f]{6})$/;
+    if (regColor.test(color)) {
+        return color.replace(regColor, function ($1, $2) {
+            var hex = "";
+            if ($2.length === 1) {
+                hex = $2.repeat(6);
+            } else if ($2.length === 2) {
+                hex = $2.repeat(3);
+            }else if ($2.length === 3) {
+                hex = $2.split("").map(function (item) {
+                    return item.concat(item);
+                }).join("");
+            } else{
+                hex = $2;
+            }
+            return "#" + hex.toLowerCase();
+        })
+    } else {
+        console.log("非法hex值");
+        return "#000000";
+    }
+}
+
+//第二题
+function randomHex(){
+    var n = "0123456789abcdef";
+    var arr = [];
+    function r(arr){
+        if(arr.length > 5){
+            return false;
+        }else{
+            arr.push(n[Math.floor(Math.random()*16)]);
+            r(arr);
+        }
+    }
+    r(arr);
+    return "#" + arr.join("");
+}
+
+//第三题
+function colorRange(a,b){
+    var c1 = parseInt(colorPad(a).slice(1),16);
+    var c2 = parseInt(colorPad(b).slice(1),16);
+    return "#" + (Math.floor(Math.random() * (c2 - c1 + 1)) + c1).toString(16).padStart(6,"0");
+}
+
+console.log(colorpad("0"));
+console.log(colorpad("#f"));
+console.log(colorpad("#f3"));
+console.log(colorpad("#fd1312"));
+console.log(colorpad("#fd112"));
+console.log(randomHex());
+console.log(colorRange("#fc0", "#ffcc02"));
+</script>
+</body>
+</html>

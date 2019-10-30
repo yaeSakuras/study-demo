@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+img {
+    width: 120px;
+    height: 160px;
+}
+
+.tag {
+    position: absolute;
+    font-size: 12px;
+    color: #fff;
+}
+
+.square {
+    padding: 2px 4px;
+    background: #cd0000;
+}
+
+.triangle {
+    margin-left: 3px;
+    z-index: 1;
+    background: transparent;
+}
+
+.triangle::after {
+    margin-left: -8px;
+    z-index: -1;
+    position: absolute;
+    content: '';
+    border-top: 25px solid #cd0000;
+    border-right: 25px solid transparent;
+}
+
+.trapezoid {
+    z-index: 1;
+    line-height: 20px;
+    background: transparent;
+}
+
+.trapezoid::after {
+    position: absolute;
+    content: '';
+    margin-left: -48px;
+    width: 50px;
+    z-index: -1;
+    border-top: 20px solid #cd0000;
+    border-right: 15px solid transparent;
+}
+
+.circle {
+    margin-left: 5px;
+    z-index: 1;
+    background: transparent;
+}
+
+.circle::after {
+    position: absolute;
+    margin-left: -10px;
+    content: '';
+    width: 25px;
+    height: 25px;
+    z-index: -1;
+    border-radius: 0 0 100% 0;
+    background: #cd0000;
+}
+
+.oval {
+    margin-left: 3px;
+    z-index: 1;
+    background: transparent;
+}
+
+.oval::after {
+    position: absolute;
+    margin-left: -22px;
+    content: '';
+    width: 35px;
+    height: 25px;
+    z-index: -1;
+    border-radius: 0 0 100% 0;
+    background: #cd0000;
+}
+</style>
+</head>
+<body>
+<div>
+    <span class="tag square">No.1</span>
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2052372606,1200247783&fm=179&app=42&f=JPEG?w=121&h=121" alt="pic">
+</div>
+<div style="margin-top: 10px">
+    <span class="tag triangle">1</span>
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2052372606,1200247783&fm=179&app=42&f=JPEG?w=121&h=121" alt="pic">
+</div>
+<div style="margin-top: 10px">
+    <span class="tag trapezoid">火热连载</span>
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2052372606,1200247783&fm=179&app=42&f=JPEG?w=121&h=121" alt="pic">
+</div>
+<div style="margin-top: 10px">
+    <span class="tag circle">1</span>
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2052372606,1200247783&fm=179&app=42&f=JPEG?w=121&h=121" alt="pic">
+</div>
+<div style="margin-top: 10px">
+    <span class="tag oval">100</span>
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2052372606,1200247783&fm=179&app=42&f=JPEG?w=121&h=121" alt="pic">
+</div>
+</body>
+</html>

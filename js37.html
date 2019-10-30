@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function formatNumber(num) {
+    var result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) {
+        result = num + result;
+    }
+    return result;
+}
+
+function formatFileSize(size) {
+    var K = 1024, M = K * K, G = M * K;
+    if (size > G) {
+        return (size / G).toFixed(2) + 'G';
+    } else if (size > M) {
+        return (size / M).toFixed(2) + 'M';
+    } else {
+        return size + 'K';
+    }
+}
+
+//第一题
+"621483018499184".replace(/(\d{4})(?=\d)/g, "$1 ");
+//第二题
+parseInt("5702375").toLocaleString();
+
+console.log(parseInt("5702375").toLocaleString());
+console.log(new Intl.NumberFormat().format(parseInt("5702375")));
+console.log(formatNumber("5702375"));
+//第三题
+console.log(formatFileSize(2837475));
+console.log(formatFileSize(234));
+console.log(formatFileSize(5367367369));
+
+
+var a = {
+    valueOf: function(){
+        return "42";
+    }
+};
+var b = {
+    toString: function(){
+        return "42";
+    }
+};
+var c = [4,2];
+c.toString = function(){
+    return this.join( "" ); // "42"
+};
+</script>
+</body>
+</html>
