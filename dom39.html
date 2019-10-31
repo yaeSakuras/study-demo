@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .image-box{
+            width: 200px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .image{
+            margin: 0 10px 10px 0;
+            display: block;
+            width: calc(100% / 3 - 10px);
+        }
+    </style>
+</head>
+<body>
+<div class="image-box">
+    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
+    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
+    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
+    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
+</div>
+<script>
+var dialog = document.createElement("dialog");
+document.body.appendChild(dialog);
+
+[].slice.call(document.querySelectorAll(".image")).forEach(function (el) {
+    el.addEventListener("click",function (e) {
+        var src = e.target.src;
+        dialog.innerHTML = `<img src=${src}>`;
+        dialog.showModal();
+    })
+});
+
+dialog.addEventListener("click", function(e) {
+    console.log(e);
+    if(e.target.nodeName === "DIALOG"){
+        this.close();
+    }
+});
+
+document.addEventListener("")
+
+</script>
+</body>
+</html>
