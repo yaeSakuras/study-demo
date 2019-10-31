@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .image-box{
-            width: 200px;
+        #image-box{
+            width: 400px;
             display: flex;
             flex-wrap: wrap;
         }
@@ -14,25 +14,52 @@
             display: block;
             width: calc(100% / 3 - 10px);
         }
+        dialog{
+            position: fixed;
+            top: 50px;
+        }
     </style>
 </head>
 <body>
-<div class="image-box">
-    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
-    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
-    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
-    <img class="image" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2247692397,1189743173&fm=5" alt="image" />
+<div id="image-box">
+    <img class="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572552499880&di=addf5f193e468ab3bd0ea9a0be9ef15b&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F7452244ef7b63d7b2d6a0488d4696d851e237b48.jpg" alt="image" />
+    <img class="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572552831897&di=f391a1277c0ba9271720d3299defde4b&imgtype=0&src=http%3A%2F%2Fimg.taopic.com%2Fuploads%2Fallimg%2F121127%2F240413-12112GA40699.jpg" alt="image" />
+    <img class="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572552499879&di=6dbe6520947273dc81e2e2fc9e4acf1c&imgtype=0&src=http%3A%2F%2Fimg.juimg.com%2Ftuku%2Fyulantu%2F110715%2F9128-110G514440969.jpg" alt="image" />
+    <img class="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572552499879&di=ff39bc1756fde871d76deef8922023fc&imgtype=0&src=http%3A%2F%2Fpic1a.nipic.com%2F2008-11-14%2F2008111485048279_2.jpg" alt="image" />
 </div>
 <script>
 var dialog = document.createElement("dialog");
 document.body.appendChild(dialog);
 
-[].slice.call(document.querySelectorAll(".image")).forEach(function (el) {
+var currentDrag = "";
+
+var imageList = [].slice.call(document.querySelectorAll(".image"));
+imageList.forEach(function (el,index) {
+    var s1;
+    var s2;
     el.addEventListener("click",function (e) {
         var src = e.target.src;
-        dialog.innerHTML = `<img src=${src}>`;
+        dialog.innerHTML = `<img src=${src} />`;
         dialog.showModal();
-    })
+    });
+    el.addEventListener("dragstart",function (e) {
+        s1 = index;
+        currentDrag = e.target;
+    });
+    el.addEventListener("dragover",function (e) {
+        e.preventDefault();
+        s2 = index;
+        if(e.target.tagName === 'IMG'){
+            if (s1 < s2) {
+                e.target.after(currentDrag);
+            } else if(s1 > s2) {
+                e.target.before(currentDrag);
+            }
+        }
+    });
+    el.addEventListener('dragend', function(e) {
+        currentDrag = null;
+    });
 });
 
 dialog.addEventListener("click", function(e) {
@@ -41,8 +68,6 @@ dialog.addEventListener("click", function(e) {
         this.close();
     }
 });
-
-document.addEventListener("")
 
 </script>
 </body>
