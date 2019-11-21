@@ -50,8 +50,8 @@ imageList.forEach(function (el) {
         if (e.target.tagName === 'IMG' && e.target !== currentDrag) {
             //使用2个元素交换法则
             const temp = document.createElement("img");
-            imageContainer.replaceChild(temp, this);
-            imageContainer.replaceChild(this, currentDrag);
+            imageContainer.replaceChild(temp, e.target);
+            imageContainer.replaceChild(e.target, currentDrag);
             imageContainer.replaceChild(currentDrag, temp);
         }
     });

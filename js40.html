@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function toCamelCase(str){
+    return str.split("-").map(function(item,index){
+        if(index > 0){
+            return item.slice(0, 1).toUpperCase() + item.slice(1).toLowerCase();
+        }else{
+            return item;
+        }
+    }).join("");
+}
+
+function toDashJoin(str){
+    return str.replace(/[A-Z]/g,function ($1,$2) {
+        return $2 > 0 ? "-" + $1.toLowerCase() : $1;
+    })
+}
+
+function toCapitalize(str){
+    return str.split(" ").map(function (item) {
+        return item.slice(0, 1).toUpperCase() + item.slice(1).toLowerCase();
+    }).join(" ");
+}
+
+function toBetterUrl(str){
+    return str.split(" ").map(function (item) {
+        return item.toLowerCase();
+    }).join("-");
+}
+
+console.log(toCamelCase("abc-def-ghi"));
+console.log(toDashJoin("abcDefGhi"));
+console.log(toCapitalize("i like css"));
+console.log(toBetterUrl("CSS value type"));
+</script>
+</body>
+</html>
