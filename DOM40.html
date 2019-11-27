@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            cursor: pointer;
+        }
+        li.selected{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="input">
+<ul id="list">
+    <li>列表1</li>
+    <li>列表2</li>
+    <li>列表3</li>
+    <li>列表4</li>
+    <li>列表5</li>
+    <li>列表6</li>
+</ul>
+<script>
+var input = document.querySelector("#input");
+var li = document.querySelectorAll("li");
+var index = -1;
+
+[].slice.call(li).forEach(function (el,i) {
+    el.addEventListener("click",function () {
+        var selected = document.querySelector(".selected");
+        selected && selected.classList.remove("selected");
+        this.classList.add("selected");
+        input.value = this.textContent;
+        index = i;
+    });
+});
+
+document.addEventListener("keyup",function (e) {
+    if(e.keyCode === 40){
+        movePos("down");
+    }else if(e.keyCode === 38){
+        movePos("up");
+    }
+});
+
+function movePos(type){
+    index !== -1 && li[index].classList.remove("selected");
+    if(type === "down"){
+        index++;
+        if(index > li.length - 1){
+            index = 0;
+        }
+    }else{
+        index--;
+        if(index < 0){
+            index = li.length - 1;
+        }
+    }
+    li[index].classList.add("selected");
+    input.value = li[index].textContent;
+}
+</script>
+</body>
+</html>
