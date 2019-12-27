@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function trim(str){
+    return str.trim();
+}
+function ToCDB(str) {
+    var res = "";
+    for(var i=0;i<str.length;i++){
+        if (str.charCodeAt(i) === 12288){
+            res += String.fromCharCode(str.charCodeAt(i)-12256);
+            continue;
+        }
+        if(str.charCodeAt(i) > 65280 && str.charCodeAt(i) < 65375){
+            res += String.fromCharCode(str.charCodeAt(i)-65248);
+        }
+        else{
+            res += String.fromCharCode(str.charCodeAt(i));
+        }
+    }
+    return res;
+}
+function splitCode(str){
+    return str.replace(/\+86/g,'');
+}
+function splitStr(str){
+    return str.replace(/[\s-]/g,'');
+}
+function validateTel(str){
+    return /^1\d{10}$/.test(str);
+}
+console.log(trim('13164621126 '));
+console.log(ToCDB('１３１６４６２１１２６'));
+console.log(splitCode('+8613164621126'));
+console.log(splitStr('1316 4621 126'));
+console.log(splitStr('1316-4621-126'));
+console.log(validateTel('13164621126'));
+</script>
+</body>
+</html>

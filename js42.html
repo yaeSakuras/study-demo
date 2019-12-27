@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function ellipsis(str){
+        if(str.length > 15){
+            return str.substr(0,6) + '...' + str.substr(-6);
+        }else{
+            return  str;
+        }
+    }
+
+    function fileEllipsis(filename){
+        if(filename.length > 15){
+            var arr = filename.split('.');
+            var tail = arr[1].length + 2;
+            var head = 15 - 3 - tail;
+            return filename.substr(0,head) + '...' + filename.substr(-tail);
+        }else{
+            return filename;
+        }
+    }
+
+    console.log(ellipsis('jksheioqwueiorudkjioeuqwioeuqiow'));
+    console.log(fileEllipsis('qweqwio312jio3123io12i3o.xlxs'));
+</script>
+</body>
+</html>

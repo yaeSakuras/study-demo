@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>#edit{height:500px;width:500px;border:1px solid red;}</style>
+</head>
+<body style="height: 2000px">
+<div id="edit" contenteditable="true"></div>
+<input type="text" id="emojiInput">
+<button id="sendEmoji">发送表情</button>
+
+<script>
+    var sendEmoji = document.getElementById('sendEmoji');
+    var edit = document.getElementById('edit');
+    // 定义最后光标对象
+    var lastEditRange;
+    edit.addEventListener('click',function() {
+        // 获取选定对象
+        var selection = getSelection();
+        // 设置最后光标对象
+        lastEditRange = selection.getRangeAt(0)
+    });
+
+    edit.addEventListener('keyup',function () {
+        var selection = getSelection();
+        lastEditRange = selection.getRangeAt(0)
+    });
+
+    sendEmoji.addEventListener('click',function () {
+        edit.focus();
+        var selection = getSelection();
+        if (lastEditRange) {
+            selection.removeAllRanges();
+            selection.addRange(lastEditRange);
+        }
+        var range = selection.getRangeAt(0);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('insertHTML', false, '<div>2</div>');
+        lastEditRange = selection.getRangeAt(0);
+    })
+</script>
+</body>
+</html>
