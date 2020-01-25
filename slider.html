@@ -52,11 +52,11 @@
 <body>
 <script>
 var body = document.querySelector('body');
-body.innerHTML = '<div class="slider"><button class="slider-track"></button><button class="slider-thumb"></button><div class="slider-line"></div></div>';
+body.innerHTML = '<div class="slider"><button class="slider-track"></button><button class="slider-thumb"></button></div>';
 var slider = document.querySelector('.slider'),
     track = document.querySelector('.slider-track'),
-    thumb = document.querySelector('.slider-thumb'),
-    line = document.querySelector('.slider-line');
+    thumb = document.querySelector('.slider-thumb');
+    // line = document.querySelector('.slider-line');
 slider.style = '--percent: 50';
 track.addEventListener('click', function (e) {
     var percent = Math.round(e.offsetX / slider.clientWidth * 100);
@@ -69,10 +69,10 @@ thumb.addEventListener('mousedown', function () {
     });
 }, false);
 
-slider.addEventListener('mousemove', function(e){
-    console.log(e);
-    line.style.left = e.offsetX + 'px';
-});
+// slider.addEventListener('mousemove', function(e){
+//     console.log(e);
+//     line.style.left = e.offsetX + 'px';
+// });
 
 function move(e) {
     var left = slider.getBoundingClientRect().left;
