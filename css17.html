@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{
+            margin: 0;
+            font-size: 0;
+            height: 220px;
+            max-width: 100%;
+            overflow:auto;
+            writing-mode: vertical-lr;
+        }
+        .box2{
+            height: 220px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-content: baseline;
+        }
+        img{
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <img src="https://i.picsum.photos/id/543/210/210.jpg">
+    <img src="https://i.picsum.photos/id/112/100/100.jpg">
+    <img src="https://i.picsum.photos/id/334/100/100.jpg">
+    <img src="https://i.picsum.photos/id/243/100/100.jpg">
+    <img src="https://i.picsum.photos/id/123/100/100.jpg">
+</div>
+<div class="box2">
+    <img src="https://i.picsum.photos/id/543/210/210.jpg">
+    <img src="https://i.picsum.photos/id/112/100/100.jpg">
+    <img src="https://i.picsum.photos/id/334/100/100.jpg">
+    <img src="https://i.picsum.photos/id/243/100/100.jpg">
+    <img src="https://i.picsum.photos/id/123/100/100.jpg">
+</div>
+</body>
+</html>

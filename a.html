@@ -6,23 +6,14 @@
 </head>
 <body>
 <script>
-    const INSTANCE = Symbol("instance");
-
-    function HappyFace() {
-        if (HappyFace[INSTANCE]) return HappyFace[INSTANCE];
-
-        function smile() {
-            return "hello";
-        }
-
-        return HappyFace[INSTANCE] = {
-            smile: smile
-        };
+    var obj = {
+        name:"zzh",
+        age:"18"
     }
-
-    var me = HappyFace(), you = HappyFace();
-    console.log(me)
-    console.log(you)
+    var obj2 = Object.assign({},obj)
+    obj2.name = "aaa"
+    console.log("obj ",obj)
+    console.log("obj2 ",obj2)
 </script>
 </body>
 </html>
