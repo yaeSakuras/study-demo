@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Node {
+        constructor(element, next) {
+            this.element = element
+            this.next = next
+        }
+    }
+
+    class LinkedList {
+        constructor() {
+            this.length = 0
+            this.head = null
+        }
+
+        push(element) {//向列表尾部添加一个新的项
+            const node = new Node(element, null)
+            let current
+            if (this.head === null) {
+                this.head = node
+            } else {
+                current = this.head
+                while (current.next) {
+                    current = current.next
+                }
+                current.next = node
+            }
+            this.length++
+        }
+
+        getNodeByIndex(index) {
+            if (index < 0 || index > this.length) return -1
+            let node = this.head
+            for (let i = 0; i < index && node; i++) {
+                node = node.next
+            }
+            return node
+        }
+
+        insert(element, index) {//向列表的特定位置插入一个新的项
+            if (index < 0 || index > this.length) return -1
+            const node = new Node(element, null)
+            if (index === 0) {
+                node.next = this.head
+                this.head = node
+            } else {
+                const prev = this.getNodeByIndex(index - 1)
+                node.next = prev.next
+                prev.next = node
+            }
+            this.length++
+        }
+
+        removeAt(index) {//从列表的特定位置移除一项
+            if (index < 0 || index >= this.length) return -1
+            let current = this.head
+            if (index === 0) {
+                this.head = current.next
+            } else {
+                const prev = this.getNodeByIndex(index - 1)
+                current = prev.next
+                prev.next = current.next
+            }
+            this.length--
+        }
+
+        remove(element) {//从列表的特定数据移除一项
+            const index = this.indexOf(element)
+            this.removeAt(index)
+        }
+
+        indexOf(element) {//返回元素在列表中的索引。如果列表中没有该元素则返回-1
+            let current = this.head
+            for (let i = 0; i < this.length && current !== null; i++) {
+                if (current.element === element) {
+                    return i
+                }
+                current = current.next
+            }
+            return -1
+        }
+
+        toString() {
+            if (this.head == null) return ''
+            let objString = `${this.head.element}`
+            let current = this.head.next
+            for (let i = 1; i < this.length && current != null; i++) {
+                objString = `${objString},${current.element}`
+                current = current.next
+            }
+            return objString
+        }
+    }
+
+    let list = new LinkedList()
+    list.push(15)
+    list.push(10)
+    list.push(5)
+    list.push(2)
+    console.log(list.toString())
+</script>
+</body>
+</html>
