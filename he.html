@@ -6,14 +6,9 @@
 </head>
 <body>
 <script>
-    function foo(index){
-        console.log(index, this.name);
-    }
-    var obj = {
-        name:'cat'
-    }
-    var array1 = [1, 2, 3];
-    array1.forEach(foo, obj);
+    const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
+    const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
+    console.log(isTwoCNChar("薇薇"));
 </script>
 </body>
 </html>
