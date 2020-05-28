@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .text{
+            color: #3D4966;
+            height: 400px;
+            width: 400px;
+            border: 1px solid #50c1f5;
+            padding: 10px;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+<div class="text" id="input" contentEditable="plaintext-only"></div>
+<input type="text">
+<input type="button" id="btn" value="btn">
+<script>
+    var input = document.querySelector('#input');
+    var btn = document.querySelector('#btn');
+    input.addEventListener('keydown',function (e) {
+        if(e.ctrlKey && e.key === "Enter"){
+            e.preventDefault();
+            document.execCommand("insertText", false, '\n');
+        }
+    })
+    btn.addEventListener('click',function () {
+        document.execCommand("insertText", false, '\n呵呵哒');
+    })
+</script>
+</body>
+</html>

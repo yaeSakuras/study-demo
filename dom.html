@@ -5,44 +5,22 @@
     <title>Title</title>
 </head>
 <body>
+<a href="css22.html">css22</a>
 <script>
-    var arr = ['cat', 'monkey', 'fish', 'bird'],
-        maxSize = 10,
-        curLen = arr.length;
+    // let fibonacci = [];
+    // fibonacci[1] = 1;
+    // fibonacci[2] = 2;
+    // for (let i = 3; i < 20; i++) {
+    //    fibonacci[i] = fibonacci[i-2] + fibonacci[i - 1]
+    // }
 
-    function insertItem(p, value) {
-        if (curLen >= maxSize) {
-            console.log('上溢出');
-            return false;
-        }
-        if (p < 0 || p > curLen) {
-            console.log('非法');
-            return false;
-        }
-        for (var i = curLen; i > p; i--) {
-            arr[i] = arr[i - 1];
-        }
-        arr[p] = value;
-        curLen++;
-        return true;
-    }
+    let fibonacci = [1,2,3,4,5,6,7,8]
+    // fibonacci.unshift(-4, -3)
 
-    function deleteItem(p) {
-        if (curLen <= 0) {
-            console.log('下溢出');
-            return false;
-        }
-        if (p < 0 || p > curLen - 1) {
-            console.log('非法');
-            return false;
-        }
-        for (var i = p; i < curLen - 1; i++) {
-            arr[i] = arr[i + 1];
-        }
-        curLen--;
-        arr.length = curLen;
-        return true;
+    for (let i = 0; i<fibonacci.length;i ++){
+        fibonacci[i] = fibonacci[i+1]
     }
+    console.log(fibonacci)
 </script>
 </body>
 </html>

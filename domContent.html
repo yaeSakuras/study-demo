@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        console.log('Inline script before link in head');
+        window.addEventListener('load', function(){
+            console.log('load event');
+        });
+        window.addEventListener('DOMContentLoaded', function(){
+            console.log('DOMContentLoaded event');
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+    <script type="text/javascript">
+        console.log('Inline script after link in head');
+    </script>
+</head>
+<body>
+<p>Content</p>
+<img src="https://i.picsum.photos/id/543/200/300.jpg">
+<script type="text/javascript" src="./main.js"></script>
+</body>
+</html>

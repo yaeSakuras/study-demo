@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        input, button {
-            margin: 10px;
-        }
 
-        .focus-only:focus {
-            outline: 2px solid black;
-        }
-
-        .focus-visible-only:focus-visible {
-            outline: 4px dashed darkorange;
-        }
     </style>
 </head>
 <body>
-<input value="Default styles"><br>
-<button>Default styles</button><br>
-<input class="focus-only" value=":focus only"><br>
-<button class="focus-only">:focus only</button><br>
-<input class="focus-visible-only" value=":focus-visible only"><br>
-<button class="focus-visible-only">:focus-visible only</button>
+<ul id="ul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<button id="btn">btn</button>
+<script>
+    btn.addEventListener("click",function () {
+        const firstChild = ul.firstElementChild
+        ul.append(firstChild)
+    })
+</script>
 </body>
 </html>

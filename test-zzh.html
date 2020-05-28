@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            display:inline-block;
+            width: 50%;
+            height: 24px;
+            line-height: 24px;
+            padding: 3px;
+        }
+        textarea{
+            display:inline-block;
+            vertical-align: top;
+            width: 80%;
+            height: 200px;
+            padding: 3px;
+            border: 1px solid silver;
+        }
+    </style>
+</head>
+<body>
+<!--<button id="btn1">发送1</button>-->
+<div>
+    <div>
+        cid:<input type="text" id="cid" value="83ad76f920294f838ecf615b027c85b4"/>
+    </div>
+    <div style="margin-top: 10px">
+        uid:<input type="text" id="uid" value="8712fa466a7c4478b7b7f16acbe00053"/>
+    </div>
+    <div style="margin-top: 10px">
+        订单状态: <input type="text" id="orderStatus" value="1">
+    </div>
+    <div style="margin-top: 10px">
+        下单时间: <input type="text" id="createTime" value="1570592891306">
+    </div>
+    <div style="margin-top: 10px">
+        订单编号: <input type="text" id="orderCode" value="123120123123">
+    </div>
+    <div style="margin-top: 10px">
+        订单链接: <input type="text" id="orderUrl" value="https://www.baidu.com">
+    </div>
+    <div style="margin-top: 10px">
+        订单金额: <input type="text" id="totalFee" value="100000123">
+    </div>
+    <div style="margin-top: 10px">
+        商品数量: <input type="text" id="goodsCount" value="2">
+    </div>
+    <div style="margin-top: 10px">商品:
+<textarea id="goods">[{
+    "name":"商品1",
+    "pictureUrl":"https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1667994205,255365672&fm=5"
+},{
+    "name":"商品2",
+    "pictureUrl":"http://goodsPicture1"
+}]</textarea>
+    </div>
+</div>
+<button id="btn2">发送订单</button>
+<script>
+// var btn1 = document.querySelector('#btn1');
+// btn1.addEventListener('click',function () {
+//     window.parent.postMessage({
+//         cid: "83ad76f920294f838ecf615b027c85b4",
+//         uid: "8712fa466a7c4478b7b7f16acbe00053",
+//         msgType: 24,
+//         miniPage:JSON.stringify({"title":"北京智齿科技股份有限公司吧嗒嘿北京智齿科技股份有限公司吧嗒嘿","url":"https://www.baidu.com","description":"我是放羊的，你是砍柴的。 咱俩来玩一会儿，谁的损失大？","label":"100元","thumbnail":"https://img.sobot.com/chatres/dd67a23fdac54b8082b2dea3c5c30e82/msg/20190620/9583a4709ae147a690b459399d4afe57.png"})
+//     }, '*');
+// },false);
+var btn2 = document.querySelector('#btn2');
+
+function getValue(id){
+    return document.querySelector('#'+id).value;
+}
+btn2.addEventListener('click',function () {
+    var data = {
+        orderStatus:getValue('orderStatus'),//订单状态
+        createTime:getValue('createTime'),//下单时间
+        orderCode:getValue('orderCode'),//订单编号
+        orderUrl:getValue('orderUrl'),//订单链接
+        totalFee:getValue('totalFee'),//订单金额
+        goodsCount:getValue('goodsCount'),//商品数量
+        goods:getValue('goods') && JSON.parse(getValue('goods'))
+    };
+    window.parent.postMessage({
+        cid: document.querySelector('#cid').value,
+        uid: document.querySelector('#uid').value,
+        msgType: 25,
+        miniPage:JSON.stringify(data)
+    }, '*');
+},false);
+</script>
+</body>
+</html>

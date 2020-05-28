@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="https://i.picsum.photos/id/0/5616/3744.jpg" width="130rem" is="x-img">
+<script>
+    class XImg extends HTMLImageElement {
+
+        static get observedAttributes() {return ['width']; }
+
+        constructor() {
+            super()
+        }
+
+        get width() {
+            return this.getAttribute('width');
+        }
+
+        connectedCallback() {
+            this.render();
+        }
+
+        render(){
+            this.style.width = this.width;
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            if(name === 'width'){
+                this.render();
+            }
+        }
+    }
+
+    customElements.define('x-img', XImg, { extends: 'img' });
+</script>
+</body>
+</html>

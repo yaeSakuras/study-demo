@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getAccount() {
+        console.log(`getAccount`)
+    }
+
+    document.addEventListener("visibilitychange", function () {
+        var state = document.visibilityState
+        if (state === 'visible') {
+            getAccount()
+        }
+    });
+    getAccount()
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="p">Example: <i>italic</i> and <b>bold</b></p>
+
+<p id="result"></p>
+<script>
+    let range = new Range();
+
+    // 下面演示上述的各个方法：
+    let methods = {
+        deleteContents() {
+            range.deleteContents()
+        },
+        extractContents() {
+            let content = range.extractContents();
+            result.innerHTML = "";
+            result.append("extracted: ", content);
+        },
+        cloneContents() {
+            let content = range.cloneContents();
+            result.innerHTML = "";
+            result.append("cloned: ", content);
+        },
+        insertNode() {
+            let newNode = document.createElement('u');
+            newNode.innerHTML = "NEW NODE";
+            range.insertNode(newNode);
+        },
+        surroundContents() {
+            let newNode = document.createElement('u');
+            try {
+                range.surroundContents(newNode);
+            } catch(e) { alert(e) }
+        },
+        resetExample() {
+            p.innerHTML = `Example: <i>italic</i> and <b>bold</b>`;
+            result.innerHTML = "";
+
+            range.setStart(p, 1);
+            range.setEnd(p, 2);
+
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+        }
+    };
+
+    for(let method in methods) {
+        document.write(`<div><button onclick="methods.${method}()">${method}</button></div>`);
+    }
+
+    methods.resetExample();
+</script>
+<!--<p>qweqweqweqwe</p>-->
+<!--<input type="text">-->
+<!--<br>-->
+<!--<button id="btn">btn</button>-->
+<!--<div><div id="div">d</div>we</div>-->
+<!--<script>-->
+<!--    var div = document.querySelector('#div');-->
+<!--    var range = document.createRange();-->
+<!--    range.selectNodeContents(div);-->
+<!--    var a = document.createElement('a');-->
+<!--    a.href = 'www.baidu.com';-->
+<!--    range.surroundContents(a);-->
+<!--// // btn.addEventListener('click',function (e) {-->
+<!--// //     var selection = window.getSelection();-->
+<!--// //     console.log(selection);-->
+<!--// // })-->
+<!--// document.addEventListener('selectionchange',function () {-->
+<!--//     var selection = window.getSelection();-->
+<!--//     console.log(selection);-->
+<!--// })-->
+<!--</script>-->
+</body>
+</html>

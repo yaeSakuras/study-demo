@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const a = [
+        {
+            pid:0,
+            name: "菜单1",
+            id:1,
+            children:[
+                {
+                    pid:1,
+                    name: "菜单11",
+                    id:11,
+                }
+            ]
+        }
+    ]
+    const b = [...a]
+    b[0].children[0].name = "qweqwe"
+    console.log(b)
+    console.log(a)
+</script>
+</body>
+</html>

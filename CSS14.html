@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+body {
+    font-size: 16px;
+}
+
+.step {
+    position: relative;
+    display: inline-block;
+    line-height: 3rem;
+    padding: 0 1.5rem;
+    margin-left: 1.5rem;
+    color: #57bdf0;
+    background: #edf9ff;
+}
+
+.step::before {
+    position: absolute;
+    content: '';
+    left: -1.5rem;
+    border-top: 1.5rem solid #edf9ff;
+    border-left: 1.5rem solid transparent;
+    border-bottom: 1.5rem solid #edf9ff;
+}
+
+.step::after {
+    position: absolute;
+    content: '';
+    right: -1.5rem;
+    border-top: 1.5rem solid transparent;
+    border-left: 1.5rem solid #edf9ff;
+    border-bottom: 1.5rem solid transparent;
+}
+
+.step:first-child::before {
+    border-color: #edf9ff;
+}
+
+.step.active {
+    color: #fff;
+    background: #039fe9;
+}
+
+.step.active::before {
+    border-top-color: #039fe9;
+    border-bottom-color: #039fe9;
+}
+
+.step.active::after {
+    border-left-color: #039fe9;
+}
+
+.step.active ~ .step {
+    color: #9b9c9d;
+    background: #ebedf0;
+}
+
+.step.active ~ .step::before {
+    border-top-color: #ebedf0;
+    border-bottom-color: #ebedf0;
+}
+
+.step.active ~ .step::after {
+    border-left-color: #ebedf0;
+}
+</style>
+</head>
+<body>
+<div class="box">
+    <a class="step" title="1-规则说明">1-规则说明</a>
+    <a class="step" title="2-参与活动">2-参与活动</a>
+    <a class="step active" title="3-参与抽奖">3-参与抽奖</a>
+    <a class="step" title="4-奖品发放">4-奖品发放</a>
+    <a class="step" title="5-查看结果">5-查看结果</a>
+</div>
+</body>
+</html>
