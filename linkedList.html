@@ -86,6 +86,20 @@
             return -1
         }
 
+        reverse() {
+            let next = null //设置头结点的下一个结点
+            let newNode = null //反转新结点
+
+            while (this.head) {
+                next = this.head.next
+                this.head.next = newNode
+                newNode = this.head
+                this.head = next
+            }
+
+            return newNode
+        }
+
         toString() {
             if (this.head == null) return ''
             let objString = `${this.head.element}`
@@ -99,11 +113,12 @@
     }
 
     let list = new LinkedList()
-    list.push(15)
-    list.push(10)
-    list.push(5)
+    list.push(1)
     list.push(2)
-    console.log(list.toString())
+    list.push(3)
+    list.push(4)
+    list.push(5)
+    console.log(list.reverse())
 </script>
 </body>
 </html>
