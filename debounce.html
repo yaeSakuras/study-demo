@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">btn</button>
+<div style="height: 1000px"></div>
+<script>
+    function _debounce(fn,wait){
+        var timer = null;
+        return function(){
+            clearTimeout(timer)
+            timer = setTimeout(()=>{
+                fn()
+            },wait)
+        }
+    }
+
+    function _log(){
+        console.log('log')
+    }
+    document.onmousemove = () => {
+        console.log(1)
+        _debounce(_log, 1000);
+    }
+    btn.addEventListener("click",_debounce(_log,500))
+    // window.onscroll = _debounce(_log,500)
+</script>
+</body>
+</html>

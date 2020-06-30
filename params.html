@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea{
+            padding: 10px;
+            border: 1px solid #c1c1c1;
+            width: 600px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<p>商品卡片</p>
+<div>
+<textarea id="t1" spellcheck="false" style="height: 200px;">
+{
+  "card_title":"云客服_智齿客服",
+  "card_url":"http://www.sobot.com",
+  "card_desc":"云客服,在线客服系统,云呼叫中心,机器人客服,工单客服,智能客服",
+  "card_note":"1500元",
+  "card_picture":"https://img.sobot.com/console/common/face/admin.png"
+}
+</textarea>
+    <br>
+    <button id="b1">发送</button>
+</div>
+<p>订单卡片</p>
+<div>
+<textarea id="t2" spellcheck="false" style="height: 300px;">
+{
+  "order_status": 1,
+  "create_time": "1586414406391",
+  "order_code": 11111,
+  "order_url": "http://www.sobot.com",
+  "goods_count": 2,
+  "total_fee": 1000,
+  "goods": [
+    {"name":"商品1","pictureUrl":"https://img.sobot.com/console/common/face/admin.png"},
+    {"name":"商品2","pictureUrl":"https://img.sobot.com/console/common/face/admin.png"}
+    ]
+}
+</textarea>
+    <br>
+    <button id="b2">发送</button>
+</div>
+<p>自定义参数</p>
+<div>
+<textarea id="t3" spellcheck="false" style="height: 200px;">
+{
+  "name":"zhichi",
+  "local":"北京"
+}
+</textarea>
+    <br>
+    <button id="b3">发送</button>
+</div>
+<script>
+    document.querySelector("#b1").addEventListener("click",function () {
+        var obj = {
+            type:"createOrder",
+            params:JSON.parse(document.querySelector("#t1").value)
+        }
+        send(obj)
+    })
+
+    document.querySelector("#b2").addEventListener("click",function () {
+        var obj = {
+            type:"createOrder",
+            params:JSON.parse(document.querySelector("#t2").value)
+        }
+        send(obj)
+    })
+
+    document.querySelector("#b3").addEventListener("click",function () {
+        var obj = {
+            type:"createOrder",
+            params:JSON.parse(document.querySelector("#t3").value)
+        }
+        send(obj)
+    })
+
+    function send(data) {
+        window.parent.postMessage(data,"*")
+    }
+</script>
+</body>
+</html>
