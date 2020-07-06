@@ -10,6 +10,9 @@
             width: 600px;
             word-break: break-all;
         }
+        input{
+            width: 600px;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +60,27 @@
     <br>
     <button id="b3">发送</button>
 </div>
+<p>订单卡片消息</p>
+<div>
+cid:<input type="text" id="cid" value="83ad76f920294f838ecf615b027c85b4"/><br>
+uid:<input type="text" id="uid" value="83ad76f920294f838ecf615b027c85b4"/><br>
+<textarea id="t4" spellcheck="false" style="height: 300px;">
+{
+  "order_status": 1,
+  "create_time": "1586414406391",
+  "order_code": 11111,
+  "order_url": "http://www.sobot.com",
+  "goods_count": 2,
+  "total_fee": 1000,
+  "goods": [
+    {"name":"商品1","pictureUrl":"https://img.sobot.com/console/common/face/admin.png"},
+    {"name":"商品2","pictureUrl":"https://img.sobot.com/console/common/face/admin.png"}
+    ]
+}
+</textarea>
+    <br>
+    <button id="b4">发送订单卡片消息</button>
+</div>
 <script>
     document.querySelector("#b1").addEventListener("click",function () {
         var obj = {
@@ -79,6 +103,17 @@
             type:"createOrder",
             params:JSON.parse(document.querySelector("#t3").value)
         }
+        send(obj)
+    })
+
+    document.querySelector("#b4").addEventListener("click",function () {
+        var obj = {
+            cid: document.querySelector('#cid').value,
+            uid: document.querySelector('#uid').value,
+            msgType: 25,
+            miniPage:JSON.stringify(JSON.parse(document.querySelector("#t4").value))
+        }
+        console.log(obj)
         send(obj)
     })
 
