@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <select id="select">
+        <option value="a">1</option>
+        <option value="b" selected>2</option>
+        <option value="c">3</option>
+    </select>
+</form>
+<script>
+    console.log(select.attributes)
+    console.log(select.form)
+    console.log(select.selectedIndex)
+    console.log(select[2].value)
+    const props = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value');
+    Object.defineProperty(HTMLSelectElement.prototype, 'value', {
+        ...props,
+        set(v) {
+            props.set.call(this, v);
+            this.dispatchEvent(new InputEvent('change'));
+        }
+    })
+
+    select.onchange = function (v) {
+        console.log(v.target.value)
+    }
+
+</script>
+</body>
+</html>
