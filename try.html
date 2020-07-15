@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getName(user) {
+        let name = user.name;
+        if (name === null) {
+            throw new Error('A girl has no name');
+        }
+        return name;
+    }
+
+    function makeFriends(user1, user2) {
+        user1.friendNames.add(getName(user2));
+        user2.friendNames.add(getName(user1));
+    }
+
+    const arya = { name: null };
+    const gendry = { name: 'Gendry' };
+    try {
+        makeFriends(arya, gendry);
+    } catch (err) {
+        console.log("Oops, that didn't work out: ", err);
+    }
+</script>
+</body>
+</html>
