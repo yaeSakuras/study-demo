@@ -11,7 +11,9 @@
             word-break: break-all;
         }
         input{
-            width: 600px;
+            width: 500px;
+            height: 24px;
+            line-height: 24px;
         }
     </style>
 </head>
@@ -60,10 +62,26 @@
     <br>
     <button id="b3">发送</button>
 </div>
+<div style="margin-top: 30px">
+    uid:<input type="text" id="uid" value=""/><br><br>
+    cid:<input type="text" id="cid" value=""/>
+</div>
+<div>
+<p>商品卡片</p>
+<textarea id="t5" spellcheck="false" style="height: 300px;">
+{
+  "title":"北京智齿科技股份有限公司吧嗒嘿北京智齿科技股份有限公司吧嗒嘿",
+  "url":"https://www.baidu.com","description":"我是放羊的，你是砍柴的。 咱俩来玩一会儿，谁的损失大？",
+  "label":"100元",
+  "thumbnail":"https://img.sobot.com/chatres/dd67a23fdac54b8082b2dea3c5c30e82/msg/20190620/9583a4709ae147a690b459399d4afe57.png"
+}
+</textarea>
+<br>
+<button id="b5">发送商品卡片消息</button>
+</div>
+
 <p>订单卡片消息</p>
 <div>
-uid:<input type="text" id="uid" value="83ad76f920294f838ecf615b027c85b4"/><br>
-cid:<input type="text" id="cid" value="83ad76f920294f838ecf615b027c85b4"/><br>
 <textarea id="t4" spellcheck="false" style="height: 300px;">
 {
   "orderStatus": 1,
@@ -112,6 +130,16 @@ cid:<input type="text" id="cid" value="83ad76f920294f838ecf615b027c85b4"/><br>
             uid: document.querySelector('#uid').value,
             msgType: 25,
             miniPage:JSON.stringify(JSON.parse(document.querySelector("#t4").value))
+        }
+        send(obj)
+    })
+
+    document.querySelector("#b5").addEventListener("click",function () {
+        var obj = {
+            cid: document.querySelector('#cid').value,
+            uid: document.querySelector('#uid').value,
+            msgType: 24,
+            miniPage:JSON.stringify(JSON.parse(document.querySelector("#t5").value))
         }
         send(obj)
     })
