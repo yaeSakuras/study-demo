@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .z-button {
+            display: inline-block;
+            line-height: 20px;
+            border-radius: 4px;
+            padding: 9px 15px;
+            min-width: 50px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #2486ff;
+            border: 1px solid #2486ff;
+        }
+    </style>
+</head>
+<body>
+<!--<z-button data-text="button"></z-button>-->
+<button is="z-button" data-text="button"></button>
+<script>
+    class Zbutton extends HTMLButtonElement {
+        constructor(props) {
+            super(props);
+            this.textContent = this.getAttribute('data-text');
+            this.setAttribute("class", "z-button");
+        }
+
+    }
+
+    customElements.define('z-button', Zbutton, {extends: 'button'});
+</script>
+</body>
+</html>
