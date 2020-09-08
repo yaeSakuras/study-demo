@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="input">
+<script>
+    input.addEventListener('input', function (e) {
+        console.log(e);
+    });
+    var myEvent = new CustomEvent('input', {
+        detail: {
+            a:1
+        }
+    });
+    input.dispatchEvent(myEvent);
+</script>
+</body>
+</html>
