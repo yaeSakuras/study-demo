@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #editor {
+            width: 400px;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div id="editor" contenteditable="true"></div>
+<br>
+<span id="count">0</span> 字符
+
+<button id="btn">stop</button>
+<script>
+    const count = document.querySelector("#count");
+    const editor = document.querySelector("#editor");
+
+    const callback = (mutationList, observer) => {
+        mutationList.forEach(mutation => {
+            switch (mutation.type) {
+                case "childList":
+                    break;
+                case "attributes":
+                    break;
+                case "characterData":
+                    console.log(mutation.oldValue)
+                    count.textContent = mutation.target.textContent.length;
+                    break
+            }
+        })
+    }
+
+    const observer = new MutationObserver(callback);
+
+    observer.observe(editor, {
+        attributes: true,
+        subtree: true,
+        characterData: true,
+        characterDataOldValue: true
+    })
+    var mutations = observer.takeRecords();
+    btn.addEventListener("click",function (){
+        console.log(mutations)
+        if (mutations) {
+            callback(mutations);
+        }
+
+        observer.disconnect();
+    },false);
+    // var mutations = observer.takeRecords();
+    // setTimeout(()=> {
+    //     if (mutations) {
+    //         callback(mutations);
+    //     }
+    //
+    //     function callback(mutations){
+    //         console.log(mutations)
+    //     }
+    //     observer.disconnect();
+    // },3000)
+</script>
+</body>
+</html>

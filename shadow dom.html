@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<z-button id="btn" type="primary">primary button</z-button>
+<z-button>default button</z-button>
+<z-button type="text">text button</z-button>
+
+<div style="margin-top: 20px;">
+    <button id="test">测试</button>
+    <button id="test1">删除节点</button>
+</div>
+<script>
+    class Zbutton extends HTMLElement {
+        static get observedAttributes() {
+            return ["disabled"];
+        }
+
+        constructor() {
+            super();
+            const shadow = this.attachShadow({ mode: "open" });
+            const type = this.getAttribute("type");
+            shadow.innerHTML = `
+            <style>
+            :host{
+                position: relative;
+                display: inline-block;
+                line-height: 20px;
+                min-width: 50px;
+                border-radius: 4px;
+                padding: 9px 15px;
+                cursor: pointer;
+                color: #fff;
+                outline: 0;
+                border: 1px solid #d9d9d9;
+                color: rgba(0,0,0,.65);
+                background: #fff;
+            }
+            .z-button {
+                background: none;
+                outline: 0;
+                border: 0;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                user-select: none;
+                cursor: unset;
+            }
+            :host(:not([disabled]):active){
+                opacity: 0.85;
+            }
+            :host([type="primary"]){
+                color: #fff;
+                background: #1890ff;
+                border-color: #1890ff;
+
+            }
+            :host([type="text"]){
+                border: none;
+            }
+            :host([type="text"]:active){
+            color: rgba(0,0,0,.65);
+            background: rgba(0,0,0,.028);
+            }
+            :host([disabled]){
+                pointer-events: none;
+                opacity: .6;
+            }
+            :host([disabled]) .z-button {
+                cursor: not-allowed;
+                pointer-events: all;
+            }
+            </style>
+            <button id="btn" class="z-button" ${
+                type ? 'type="' + type + '"' : ""
+            }></button><slot></slot>
+            `;
+        }
+
+        get disabled() {
+            return this.getAttribute("disabled") !== null;
+        }
+
+        set disabled(value) {
+            console.log(value);
+            if (value === null || value === false) {
+                this.removeAttribute("disabled");
+            } else {
+                this.setAttribute("disabled", "");
+            }
+        }
+
+        connectedCallback() {
+            this.btn = this.shadowRoot.querySelector("#btn");
+
+            this.btn.addEventListener("click", () => {
+                console.log(this.btn.getAttribute("type"));
+            });
+        }
+
+        disconnectedCallback() {
+            console.log("删除节点");
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            console.log(name, "oldValue:", oldValue, "newValue:", newValue);
+            if (name === "disabled") {
+                if (newValue !== null) {
+                    this.btn.setAttribute("disabled", "disabled");
+                } else {
+                    this.btn.removeAttribute("disabled");
+                }
+            }
+        }
+    }
+
+    customElements.define("z-button", Zbutton);
+
+    test.addEventListener("click", function () {
+        btn.disabled = !btn.disabled;
+    });
+    test1.addEventListener("click", function () {
+        btn.remove();
+    });
+</script>
+</body>
+</html>
