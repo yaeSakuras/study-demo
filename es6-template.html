@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<template>
+    ${data.map(function (obj, index) {
+    return `
+    <tr>
+        <td><input type="checkbox" value="${obj.id}"></td>
+        <td>
+            <div class="ell">${obj.title}</div>
+        </td>
+        <td>${obj.time}</td>
+        <td align="right">${obj.comment}</td>
+    </tr>
+    `;
+    }).join('')}
+</template>
+<script>
+    const json = {
+        data:[{
+            "id": "0001",
+            "title": "如何让文字作为CSS背景图片显示？",
+            "time": "2020年10月20日",
+            "comment": 7
+        }, {
+            "id": "0002",
+            "title": "SVG feTurbulence滤镜深入介绍",
+            "time": "2020年10月17日",
+            "comment": 3
+        }, {
+            "id": "0003",
+            "title": "HTML enterkeyhint设置iOS/Android键盘enter键",
+            "time": "2020年10月11日",
+            "comment": 3
+        }, {
+            "id": "0004",
+            "title": "快速学习CSS Color Level 4的色值新语法",
+            "time": "2020年10月11日",
+            "comment": 2
+        }]
+    }
+
+    String.prototype.interpolate = function (params) {
+        const names = Object.keys(params);
+        const vals = Object.values(params);
+        console.log(...names);
+        console.log(...vals);
+        console.log(`return \`${this}\`;`);
+        return new Function(...names, `return \`${this}\`;`)(...vals);
+    }
+    const strTemplate = document.querySelector("template").innerHTML;
+    console.log(strTemplate.interpolate(json));
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .text-ell {
+            width: 300px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+
+        p {
+            width: 300px;
+            position: relative;
+            line-height: 20px;
+            max-height: 40px;
+            overflow: hidden;
+        }
+
+        p::after {
+            content: "...";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding-left: 40px;
+        }
+
+#container {
+    padding: 5px;
+    border: 1px solid;
+    height: 48px;
+    width: 300px;
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+<div class="text-ell">这是实用代码片段（小型代码示例）的速查表，对开发各种 Mozilla 扩展程序的开发者有价值，其中的许多示例可以在 XULRunner 应用程序以及实际的 Mozilla 代码本身中使用。
+</div>
+<p>这是实用代码片段（小型代码示例）的速查表，对开发各种 Mozilla 扩展程序的开发者有价值，其中的许多示例可以在 XULRunner 应用程序以及实际的 Mozilla 代码本身中使用。</p>
+<div id="container">
+    <div>这是实用代码片段（小型代码示例）的速查表，对开发各种 Mozilla 扩展程序的开发者有价值，其中的许多示例可以在 XULRunner 应用程序以及实际的 Mozilla 代码本身中使用。</div>
+</div>
+<script>
+    var container = document.getElementById('container');
+    var content = container.firstElementChild;
+    var str = content.firstChild.nodeValue;
+    if (content.scrollHeight > container.offsetHeight) {
+        for (var i = 0; i <= str.length; i++) {
+            content.firstChild.nodeValue = str.slice(0, i);
+            if (content.scrollHeight > container.offsetHeight) {
+                content.firstChild.nodeValue = str.slice(0, i - 3) + '...';
+                break;
+            }
+        }
+    }
+</script>
+</body>
+</html>

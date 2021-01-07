@@ -6,8 +6,30 @@
 </head>
 <body>
 <script>
-    function Foo(){}
-    console.log(Foo.prototype.constructor === Foo);
+    // function Foo(){}
+    // console.log(Foo.prototype.constructor === Foo);
+
+    const object = {
+        id: '123456',
+        name: 'zzh',
+        tel: '1329384209012',
+        address: '北京丰台区',
+        param:'a&b=c'
+    }
+    const str = Object.keys(object).map((key) => `${key}=${encodeURIComponent(object[key])}`).join('&');
+    console.log(str);
+    // function urlToObj(url) {
+    //     let obj = {};
+    //     decodeURIComponent(url).replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=> obj[k]=v);
+    //     return obj;
+    // }
+    // console.log(urlToObj(str));
+    var urlSearchParams = new URLSearchParams(str)
+    var urlObj = {}
+    for (let [key, value] of urlSearchParams.entries()) {
+        urlObj[key] = value
+    }
+    console.log(urlObj);
 </script>
 </body>
 </html>

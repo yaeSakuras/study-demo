@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border: 1px solid #000000;
+        }
+        dialog::backdrop {
+            background: rgba(255,0,0,.25);
+        }
+    </style>
+</head>
+<body>
+<dialog id="dialog">
+    <p>Greetings, one and all!</p>
+</dialog>
+<button id="open">btn</button>
+<!--It was a dark and stormy night...-->
+
+<!--This example has a minimum and maximum number of characters-->
+
+<!--This example has a minimum and maximum number of characters-->
+<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+<button id="button">获取内容</button>
+<div id="text" style="white-space: pre;width: 200px"></div>
+<script>
+    document.querySelector("#open").addEventListener('click',function () {
+        document.querySelector('#dialog').showModal();
+    },false);
+    document.querySelector("#button").addEventListener('click',()=> {
+        // console.log(textarea.value);
+        // console.log(encodeURI(textarea.value));
+        console.log(JSON.stringify(textarea.value));
+        text.innerHTML = textarea.value
+    })
+</script>
+</body>
+</html>

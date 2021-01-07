@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text"> <button>按钮</button>
+    <p></p>
+</div>
+<script>
+    const btn = document.querySelector('button');
+    const input = document.querySelector('input');
+    const p = document.querySelector('p');
+    let isHasAttribute = false;
+
+    isHasAttribute = input.toggleAttribute('readOnly', true);
+    p.innerText = `input attribute readonly is ${isHasAttribute}`;
+
+    btn.addEventListener('click', () => {
+        isHasAttribute = input.toggleAttribute('readOnly');
+        p.innerText = `input attribute readonly is ${isHasAttribute}`;
+    });
+</script>
+</body>
+</html>
