@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取图片并灰度化</title>
+    <style>
+        .view {
+            margin-top: 20px;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #9b9c9d;
+        }
+
+        .view img {
+            display: block;
+            width: 100%;
+        }
+
+        canvas {
+            display: block;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #9b9c9d;
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="pick">
+<div class="view">
+    <img id="preview"/>
+</div>
+<br>
+<button id="btn">灰度化</button>
+<br>
+<canvas id="canvas"></canvas>
+<button id="upload">点击上传</button>
+<script>
+    const canvas = document.querySelector('#canvas')
+    const image = document.querySelector('#preview')
+    const ctx = canvas.getContext('2d')
+    let imageData = null
+    let data = null
+
+    function draw() {
+        const w = image.clientWidth
+        const h = image.clientHeight
+        ctx.drawImage(image, 0, 0, w, h)
+        imageData = ctx.getImageData(0, 0, w, h)
+        data = imageData.data
+    }
+
+    function compress(url, mimeType, quality) {
+        const MAX_WIDTH = 800// 图片最大宽度
+        let canvas = document.createElement('canvas')
+        let img = document.createElement('img')
+        img.crossOrigin = 'anonymous'
+        return new Promise(resolve => {
+            img.src = url
+            img.onload = () => {
+                let targetWidth, targetHeight
+                if (img.width > MAX_WIDTH) {
+                    targetWidth = MAX_WIDTH
+                    targetHeight = (img.height * MAX_WIDTH) / img.width
+                } else {
+                    targetWidth = img.width
+                    targetHeight = img.height
+                }
+                canvas.width = targetWidth
+                canvas.height = targetHeight
+                let ctx = canvas.getContext('2d')
+                ctx.clearRect(0, 0, targetWidth, targetHeight) // 清除画布
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+                let imageData = canvas.toDataURL(mimeType, quality / 100)
+                resolve(imageData)
+            }
+        })
+    }
+
+function dataUrlToBlob(base64, mimeType) {
+    let bytes = window.atob(base64.split(',')[1])
+    let ab = new ArrayBuffer(bytes.length)
+    let ia = new Uint8Array(ab)
+    for (let i = 0; i < bytes.length; i++) {
+        ia[i] = bytes.charCodeAt(i)
+    }
+    return new Blob([ab], {type: mimeType})
+}
+
+function dataUrlToFile(base64, name) {
+    let arr = base64.split(',');
+    let mime = arr[0].match(/:(.*?);/)[1];
+    let str = atob(arr[1]);
+    let n = str.length;
+    let u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = str.charCodeAt(n);
+    }
+    return new File([u8arr], name, { type: mime });
+}
+
+    document.querySelector('#pick').addEventListener('change', event => {
+        image.src = URL.createObjectURL(event.target.files[0])
+        image.onload = function () {
+            draw()
+            // URL.revokeObjectURL(url) 如果不使用可以释放
+        }
+    })
+
+    document.querySelector('#btn').addEventListener('click', () => {
+        for (let i = 0; i < data.length; i += 4) {
+            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3
+            data[i] = avg // red
+            data[i + 1] = avg // green
+            data[i + 2] = avg // blue
+        }
+        ctx.putImageData(imageData, 0, 0)
+    })
+
+    document.querySelector('#upload').addEventListener('click', async () => {
+        let compressedDataURL = await compress(image.src, 'image/jpeg', 90)
+        console.log(compressedDataURL)
+    })
+</script>
+</body>
+</html>
